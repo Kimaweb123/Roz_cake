@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>رز کیک</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --rose: #e8748a;
+      --rose-dark: #c9566e;
+      --rose-light: #f9d0d8;
+      --gold: #c9924c;
+      --cream: #fff8f4;
+      --cream-dark: #fdeee7;
+      --text: #3a2a2a;
+      --text-muted: #9a7a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: rgba(255,248,244,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232,116,138,0.15);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(232,116,138,0.08);
+    }
+    .navbar-brand {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--rose) !important;
+    }
+    .navbar-brand span { color: var(--gold); }
+    .nav-link { color: var(--text) !important; font-weight: 400; margin: 0 0.3rem; transition: color 0.3s; font-size: 0.9rem; }
+    .nav-link:hover { color: var(--rose) !important; }
+    .navbar-toggler { border-color: var(--rose); }
+    .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(232,116,138,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+    .btn-rose {
+      background: var(--rose);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.3s;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.9rem;
+    }
+    .btn-rose:hover { background: var(--rose-dark); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232,116,138,0.35); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f3 0%, #fff8f4 50%, #fdeee7 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.3;
+    }
+    .hero-blob-1 { width: 400px; height: 400px; background: var(--rose-light); top: -100px; left: -100px; }
+    .hero-blob-2 { width: 300px; height: 300px; background: #ffd6a0; bottom: -50px; right: -50px; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--rose-light);
+      color: var(--rose-dark);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+    .hero h1 .highlight { color: var(--rose); }
+    .hero p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 2rem; font-weight: 300; max-width: 460px; }
+    .btn-outline-rose {
+      background: transparent;
+      color: var(--rose);
+      border: 2px solid var(--rose);
+      padding: 0.7rem 1.8rem;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.3s;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.9rem;
+    }
+    .btn-outline-rose:hover { background: var(--rose); color: white; }
+    .hero-visual {
+      font-size: clamp(6rem, 15vw, 12rem);
+      text-align: center;
+      filter: drop-shadow(0 20px 40px rgba(232,116,138,0.2));
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .hero-features {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+    .hero-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero-feature i { color: var(--rose); }
+
+    /* SECTIONS */
+    section { padding: 5rem 0; }
+    .section-badge {
+      display: inline-block;
+      background: var(--rose-light);
+      color: var(--rose-dark);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; margin-bottom: 0.8rem; }
+    .section-title .highlight { color: var(--rose); }
+
+    /* CATEGORIES */
+    #categories { background: white; }
+    .cat-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 2px solid transparent;
+      height: 100%;
+    }
+    .cat-card:hover {
+      border-color: var(--rose-light);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(232,116,138,0.12);
+    }
+    .cat-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .cat-card h5 { font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; color: var(--text); }
+    .cat-card p { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
+
+    /* PRODUCTS */
+    #products { background: var(--cream-dark); }
+    .filter-tabs { border: none; gap: 0.5rem; flex-wrap: wrap; }
+    .filter-tabs .nav-link {
+      border: 2px solid var(--rose-light) !important;
+      border-radius: 50px !important;
+      color: var(--text-muted) !important;
+      padding: 0.5rem 1.3rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      background: white !important;
+    }
+    .filter-tabs .nav-link.active,
+    .filter-tabs .nav-link:hover {
+      background: var(--rose) !important;
+      color: white !important;
+      border-color: var(--rose) !important;
+    }
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s;
+      height: 100%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(232,116,138,0.15); }
+    .product-img {
+      background: linear-gradient(135deg, var(--rose-light), #ffd6a0);
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .product-badge-new {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--rose);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+    .product-badge-sale {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--gold);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+    .product-body { padding: 1.2rem; }
+    .product-body h5 { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .product-body p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; }
+    .product-price { font-weight: 900; color: var(--rose); font-size: 1rem; }
+    .product-price .old-price { font-size: 0.75rem; color: var(--text-muted); text-decoration: line-through; display: block; font-weight: 400; }
+    .btn-add {
+      width: 36px; height: 36px;
+      background: var(--rose-light);
+      color: var(--rose);
+      border: none;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-add:hover { background: var(--rose); color: white; }
+    .stars { color: #f4a623; font-size: 0.75rem; margin-bottom: 0.3rem; }
+
+    /* WHY US */
+    #why { background: white; }
+    .why-card {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .why-icon {
+      width: 70px; height: 70px;
+      background: var(--rose-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.2rem;
+      transition: all 0.3s;
+    }
+    .why-card:hover .why-icon { background: var(--rose); transform: scale(1.1); }
+    .why-card h5 { font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem; }
+    .why-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.7; }
+
+    /* TESTIMONIALS */
+    #testimonials { background: linear-gradient(135deg, #fff0f3, #fff8f4); }
+    .testi-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: 0 5px 20px rgba(232,116,138,0.08);
+      height: 100%;
+    }
+    .testi-stars { color: #f4a623; margin-bottom: 0.8rem; }
+    .testi-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+    .testi-avatar { width: 42px; height: 42px; background: var(--rose-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .testi-name { font-weight: 700; font-size: 0.9rem; }
+    .testi-date { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ORDER */
+    #order { background: var(--cream-dark); }
+    .order-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(232,116,138,0.1);
+    }
+    .form-control, .form-select {
+      border: 2px solid var(--rose-light) !important;
+      border-radius: 12px !important;
+      padding: 0.8rem 1rem;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.9rem;
+      background: var(--cream) !important;
+      color: var(--text) !important;
+      transition: border-color 0.3s;
+    }
+    .form-control:focus, .form-select:focus { border-color: var(--rose) !important; box-shadow: 0 0 0 3px rgba(232,116,138,0.12) !important; }
+    .form-control::placeholder { color: var(--text-muted) !important; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: #d4b4b4;
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-brand { font-size: 1.5rem; font-weight: 900; color: var(--rose-light); }
+    .footer-text { font-size: 0.85rem; line-height: 1.8; margin-top: 0.8rem; color: #9a7a7a; }
+    .footer-title { color: var(--rose-light); font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 1rem; }
+    .footer-link { color: #9a7a7a; text-decoration: none; font-size: 0.88rem; display: block; margin-bottom: 0.5rem; transition: color 0.3s; }
+    .footer-link:hover { color: var(--rose-light); }
+    .social-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #9a7a7a; text-decoration: none; transition: all 0.3s; margin-left: 0.5rem; }
+    .social-btn:hover { background: var(--rose); color: white; }
+    .footer-bottom { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: #6a5a5a; text-align: center; }
+
+    /* CART BADGE */
+    .cart-btn { position: relative; }
+    .cart-count { position: absolute; top: -6px; left: -6px; background: var(--rose); color: white; width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">🌹 رز<span>کیک</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#categories">دسته‌بندی</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">محصولات</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why">چرا ما؟</a></li>
+          <li class="nav-item"><a class="nav-link" href="#order">سفارش</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <a href="#order" class="cart-btn" style="color:var(--rose); text-decoration:none;">
+            <i class="fas fa-shopping-bag fa-lg"></i>
+            <span class="cart-count">۳</span>
+          </a>
+          <a href="#order" class="btn btn-rose btn-sm">سفارش آنلاین</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 hero-content">
+          <div class="hero-badge">🌹 شیرینی‌پزی سنتی و مدرن</div>
+          <h1>شیرینی <span class="highlight">رز</span><br/>با عشق پخته میشه</h1>
+          <p>از کیک‌های سفارشی عروسی تا شیرینی‌های تازه روزانه — هر سفارش با دست و با عشق آماده میشه.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#products" class="btn btn-rose">مشاهده محصولات</a>
+            <a href="#order" class="btn btn-outline-rose">سفارش آنلاین</a>
+          </div>
+          <div class="hero-features">
+            <div class="hero-feature"><i class="fas fa-check-circle"></i> تحویل اکسپرس</div>
+            <div class="hero-feature"><i class="fas fa-check-circle"></i> مواد طبیعی</div>
+            <div class="hero-feature"><i class="fas fa-check-circle"></i> سفارش ویژه</div>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div class="hero-visual">🎂</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section id="categories">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-badge">دسته‌بندی محصولات</div>
+        <h2 class="section-title">چی دوست داری؟ 🍰</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <div class="cat-card">
+            <span class="cat-emoji">🎂</span>
+            <h5>کیک تولد</h5>
+            <p>از ۱ تا ۱۰ طبقه</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="cat-card">
+            <span class="cat-emoji">💍</span>
+            <h5>کیک عروسی</h5>
+            <p>طراحی اختصاصی</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="cat-card">
+            <span class="cat-emoji">🧁</span>
+            <h5>کاپ‌کیک</h5>
+            <p>بسته‌های ۶ و ۱۲ تایی</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="cat-card">
+            <span class="cat-emoji">🍪</span>
+            <h5>شیرینی خشک</h5>
+            <p>سنتی و مدرن</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-badge">پرفروش‌ترین‌ها</div>
+        <h2 class="section-title">محصولات <span class="highlight">محبوب</span></h2>
+      </div>
+      <ul class="nav filter-tabs justify-content-center mb-4" id="filterTabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#all">همه</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cakes">کیک</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cupcakes">کاپ‌کیک</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cookies">شیرینی</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="all">
+          <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img">🎂<span class="product-badge-new">جدید</span></div>
+                <div class="product-body">
+                  <div class="stars">★★★★★</div>
+                  <h5>کیک شکلاتی رز</h5>
+                  <p>کیک سه طبقه با گاناش شکلات تلخ</p>
+                  <div class="product-footer">
+                    <div class="product-price">
+                      <span class="old-price">۳۵۰,۰۰۰ تومان</span>
+                      ۲۸۰,۰۰۰ ت
+                    </div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img">🧁</div>
+                <div class="product-body">
+                  <div class="stars">★★★★★</div>
+                  <h5>کاپ‌کیک وانیل</h5>
+                  <p>بسته ۶ تایی با خامه رنگی</p>
+                  <div class="product-footer">
+                    <div class="product-price">۱۸۰,۰۰۰ ت</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg,#ffd6e0,#ffb3c6);">🍰<span class="product-badge-sale">تخفیف</span></div>
+                <div class="product-body">
+                  <div class="stars">★★★★☆</div>
+                  <h5>چیزکیک توت‌فرنگی</h5>
+                  <p>چیزکیک خامه‌ای با سس تازه</p>
+                  <div class="product-footer">
+                    <div class="product-price">
+                      <span class="old-price">۲۵۰,۰۰۰ تومان</span>
+                      ۱۹۵,۰۰۰ ت
+                    </div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg,#ffecd2,#fcb69f);">🍪</div>
+                <div class="product-body">
+                  <div class="stars">★★★★★</div>
+                  <h5>شیرینی دانمارکی</h5>
+                  <p>بسته ۵۰۰ گرمی، ترد و خوشمزه</p>
+                  <div class="product-footer">
+                    <div class="product-price">۱۴۵,۰۰۰ ت</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg,#e0c3fc,#f8c8d4);">💍<span class="product-badge-new">ویژه</span></div>
+                <div class="product-body">
+                  <div class="stars">★★★★★</div>
+                  <h5>کیک عروسی رز</h5>
+                  <p>طراحی اختصاصی، چند طبقه</p>
+                  <div class="product-footer">
+                    <div class="product-price">از ۸۵۰,۰۰۰ ت</div>
+                    <button class="btn-add"><i class="fas fa-phone"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg,#d4f1d4,#a8e6cf);">🍮</div>
+                <div class="product-body">
+                  <div class="stars">★★★★☆</div>
+                  <h5>پاناکوتا پسته</h5>
+                  <p>دسر ایتالیایی با پسته ایرانی</p>
+                  <div class="product-footer">
+                    <div class="product-price">۹۵,۰۰۰ ت</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg,#ffeaa7,#fdcb6e);">🥐</div>
+                <div class="product-body">
+                  <div class="stars">★★★★★</div>
+                  <h5>کروسان کره‌ای</h5>
+                  <p>تازه هر روز صبح از فر</p>
+                  <div class="product-footer">
+                    <div class="product-price">۶۵,۰۰۰ ت</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg,#ffd6a5,#ffb347);">🎃<span class="product-badge-sale">پرفروش</span></div>
+                <div class="product-body">
+                  <div class="stars">★★★★★</div>
+                  <h5>کیک تولد سفارشی</h5>
+                  <p>طرح دلخواه، هر اندازه</p>
+                  <div class="product-footer">
+                    <div class="product-price">از ۳۵۰,۰۰۰ ت</div>
+                    <button class="btn-add"><i class="fas fa-phone"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-badge">مزیت‌های ما</div>
+        <h2 class="section-title">چرا <span class="highlight">رزکیک</span>؟</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <div class="why-card">
+            <div class="why-icon">🥚</div>
+            <h5>مواد طبیعی</h5>
+            <p>فقط از بهترین مواد اولیه طبیعی استفاده میکنیم</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="why-card">
+            <div class="why-icon">🚀</div>
+            <h5>تحویل سریع</h5>
+            <p>تحویل در کمتر از ۲۴ ساعت در تهران</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="why-card">
+            <div class="why-icon">🎨</div>
+            <h5>طراحی دلخواه</h5>
+            <p>هر طرحی که بخوای، ما میسازیم</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="why-card">
+            <div class="why-icon">💝</div>
+            <h5>با عشق پخته شده</h5>
+            <p>هر کیک با دست و با عشق آماده میشه</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-badge">نظر مشتریان</div>
+        <h2 class="section-title">اونا چی میگن؟ 💬</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">کیک تولد دخترم رو از رزکیک سفارش دادم. هم طراحیش عالی بود هم مزه‌اش. همه مهمونا تعریف کردن!</p>
+            <div class="testi-author">
+              <div class="testi-avatar">👩</div>
+              <div><div class="testi-name">سارا محمدی</div><div class="testi-date">۲ هفته پیش</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">کیک عروسیمون رو سفارش دادیم. دقیقاً همون چیزی که میخواستیم. سرویس‌شون هم عالیه.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">👨</div>
+              <div><div class="testi-name">علی رضایی</div><div class="testi-date">۱ ماه پیش</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">شیرینی‌هاشون تازه و خوشمزه‌ست. کروسان‌هاشون بهترین چیزیه که تو تهران خوردم!</p>
+            <div class="testi-author">
+              <div class="testi-avatar">👩</div>
+              <div><div class="testi-name">مریم کریمی</div><div class="testi-date">۳ روز پیش</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-badge">سفارش آنلاین</div>
+        <h2 class="section-title">سفارشت رو <span class="highlight">ثبت کن</span> 🛍️</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="order-card">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">نام و نام خانوادگی</label>
+                <input type="text" class="form-control" placeholder="مثلاً: سارا احمدی"/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">شماره تلفن</label>
+                <input type="tel" class="form-control" placeholder="۰۹۱۲۳۴۵۶۷۸۹"/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">نوع محصول</label>
+                <select class="form-select">
+                  <option value="">انتخاب کنید...</option>
+                  <option>کیک تولد سفارشی</option>
+                  <option>کیک عروسی</option>
+                  <option>کاپ‌کیک</option>
+                  <option>شیرینی خشک</option>
+                  <option>چیزکیک</option>
+                  <option>سایر</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">تاریخ تحویل</label>
+                <input type="date" class="form-control"/>
+              </div>
+              <div class="col-12">
+                <label class="form-label">آدرس تحویل</label>
+                <input type="text" class="form-control" placeholder="تهران، خیابان..."/>
+              </div>
+              <div class="col-12">
+                <label class="form-label">توضیحات سفارش</label>
+                <textarea class="form-control" rows="3" placeholder="طرح دلخواه، متن روی کیک، آلرژی غذایی..."></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-rose w-100 py-3" style="font-size:1rem;">
+                  <i class="fas fa-shopping-bag me-2"></i> ثبت سفارش
+                </button>
+              </div>
+              <div class="col-12 text-center">
+                <small style="color:var(--text-muted);">
+                  <i class="fab fa-whatsapp" style="color:#25d366"></i>
+                  یا واتساپ: ۰۹۱۲-۳۴۵-۶۷۸۹
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand">🌹 رزکیک</div>
+          <p class="footer-text">از ۱۳۹۵ با عشق می‌پزیم. هر کیک یه داستانه.</p>
+          <div class="mt-3">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-title">دسترسی سریع</div>
+          <a href="#categories" class="footer-link">دسته‌بندی‌ها</a>
+          <a href="#products" class="footer-link">محصولات</a>
+          <a href="#why" class="footer-link">چرا رزکیک؟</a>
+          <a href="#order" class="footer-link">سفارش آنلاین</a>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-title">ساعات کاری</div>
+          <div style="font-size:0.88rem; line-height:2.2; color:#9a7a7a;">
+            <div>شنبه تا چهارشنبه: ۸ صبح — ۹ شب</div>
+            <div>پنجشنبه: ۸ صبح — ۱۱ شب</div>
+            <div>جمعه: ۱۰ صبح — ۸ شب</div>
+            <div style="color:var(--rose-light); margin-top:0.5rem;">📞 ۰۲۱-۱۲۳۴۵۶۷۸</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">© ۱۴۰۳ رزکیک — با عشق پخته شده ❤️</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    document.querySelectorAll('.btn-add').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.style.background = 'var(--rose)';
+        btn.style.color = 'white';
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.innerHTML = '<i class="fas fa-plus"></i>';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
